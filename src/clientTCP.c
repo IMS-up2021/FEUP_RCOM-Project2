@@ -66,12 +66,16 @@ int createSocket(const char *SERVER_ADDR, int SERVER_PORT) {
     }
 
     /* connect to the server */
+    /*
     if (connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
         perror("connect()");
         close(sockfd);
         return -1;
     }
+    */
 
+    connect(sockfd, (struct sockaddre *)&server_addr, sizeof(server_addr));
+    
     return sockfd;
 }
 
