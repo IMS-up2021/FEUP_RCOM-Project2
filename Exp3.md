@@ -40,20 +40,20 @@ Then we connected the cables from our tux's to the respective ports so that tux5
 
 The routes in the tuxes are the following:
 
-	routes tux54:
-	dest			gateway		interface
-	172.16.50.0 		0.0.0.0		eth0
-	172.16.51.0     	0.0.0.0		eth1
-	
-	tux53:
-	dest			gateway		interface
-	172.16.50.0		0.0.0.0 	eth0
-	172.16.51.0		172.16.50.254	eth0
-	
-	tux52:
-	dest			gateway		interface
-	172.16.51.0		0.0.0.0		eth0
-	172.16.50.0		172.16.51.253	eth0
+routes tux54:
+dest			gateway		interface
+172.16.50.0 		0.0.0.0		eth0
+172.16.51.0     	0.0.0.0		eth1
+
+tux53:
+dest			gateway		interface
+172.16.50.0		0.0.0.0 	eth0
+172.16.51.0		172.16.50.254	eth0
+
+tux52:
+dest			gateway		interface
+172.16.51.0		0.0.0.0		eth0
+172.16.50.0		172.16.51.253	eth0
 
 It means that tux54 is connected to both bridges and is being used for tux52 to communicate with tux53 via the gateway 172.16.51.253.
 
@@ -83,8 +83,8 @@ The MAC address associated with an ICMP packet is used for layer 2 encapsulation
 
 The use of both IP and MAC addresses in ICMP packets is crucial for efficient communication on IP networks.
 
-• IP Address: The IP address provides the logical addressing at the network layer, allowing the packet to be routed to the correct destination network or host.
+	• IP Address: The IP address provides the logical addressing at the network layer, allowing the packet to be routed to the correct destination network or host.
 
-• MAC Address: The MAC address provides the physical addressing at the data link layer, enabling the packet to be delivered to the specific NIC on the destination device.
+	• MAC Address: The MAC address provides the physical addressing at the data link layer, enabling the packet to be delivered to the specific NIC on the destination device.
 
 Without both IP and MAC addresses, ICMP packets would be unable to efficiently traverse the network and reach their intended recipients.

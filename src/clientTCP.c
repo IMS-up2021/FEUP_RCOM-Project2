@@ -36,7 +36,7 @@ int createSocket(const char *SERVER_ADDR, int SERVER_PORT) {
 }
 
 // Function to handle errors
-void handleError(const char *functionName, const char *errorMessage, int sockfd, int sockfd2, FILE *fileptr) {
+void handleTCPError(const char *functionName, const char *errorMessage, int sockfd, int sockfd2, FILE *fileptr) {
     fprintf(stderr, "Error in function %s: %s\n", functionName, errorMessage);
 
     if (sockfd2 > 0) {
@@ -60,7 +60,7 @@ int createConnection(const char *SERVER_ADDR, int SERVER_PORT, const char *user,
 
     int sockfd = createSocket(SERVER_ADDR, SERVER_PORT);
     if (sockfd == -1) {
-        handleError("createSocket", "Failed to create socket", -1, -1, NULL);
+        handleTCPError("createSocket", "Failed to create socket", -1, -1, NULL);
     }
 
     int sockfd2 = 0;
@@ -132,7 +132,7 @@ int createConnection(const char *SERVER_ADDR, int SERVER_PORT, const char *user,
 
                 sockfd2 = createSocket(SERVER_ADDR, port);
                 if (sockfd2 == -1) {
-                    handleError("createSocket", "Failed to create data socket", sockfd, -1, NULL);
+                    handleTCPError("createSocket", "Failed to create data socket", sockfd, -1, NULL);
                 }
 
                 printf("\n---------- Retrieving file... ----------\n");
@@ -143,7 +143,7 @@ int createConnection(const char *SERVER_ADDR, int SERVER_PORT, const char *user,
                 printf("\n---------- Starting File Download... ----------\n");
                 fileptr = fopen(filename, "w");
                 if (fileptr == NULL) {
-                    handleError("fopen", "Failed to open file for writing", sockfd, sockfd2, NULL);
+                    handleTCPError("fopen", "Failed to open file for writing", sockfd, sockfd2, NULL);
                 }
                 printf("\n--- Created file with name '%s' ---\n", filename);
                 download = 1;
@@ -173,7 +173,7 @@ int createConnection(const char *SERVER_ADDR, int SERVER_PORT, const char *user,
 
             default:
                 printf("\n---------- Status code %d not recognized ----------\n", sc);
-                handleError("createConnection", "Unknown status code", sockfd, sockfd2, fileptr);
+                handleTCPError("createConnection", "Unknown status code", sockfd, sockfd2, fileptr);
                 break;
         }
     }
@@ -182,12 +182,12 @@ int createConnection(const char *SERVER_ADDR, int SERVER_PORT, const char *user,
 
     if (close(sockfd2) < 0) {
         perror("close()");
-        handleError("close", "Failed to close data socket", sockfd, -1, NULL);
+        handleTCPError("close", "Failed to close data socket", sockfd, -1, NULL);
     }
 
     if (close(sockfd) < 0) {
         perror("close()");
-        handleError("close", "Failed to close control socket", -1, sockfd2, fileptr);
+        handleTCPError("close", "Failed to close control socket", -1, sockfd2, fileptr);
     }
 
     return 0;
