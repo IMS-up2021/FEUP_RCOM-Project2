@@ -74,7 +74,7 @@ int createSocket(const char *SERVER_ADDR, int SERVER_PORT) {
     }
     */
 
-    connect(sockfd, (struct sockaddre *)&server_addr, sizeof(server_addr));
+    connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr));
     
     return sockfd;
 }
