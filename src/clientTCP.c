@@ -6,6 +6,46 @@
 #include <unistd.h>
 #include <string.h>
 
+//Esta função lê o socket e retorna o status code da ultima linha da mensagem (funciona mesmo se so tiver uma linha)
+int getLastLineStatusCode(char *buf){
+    int a;
+    char *pt;
+    pt = strtok (buf,"\n");
+    while (pt != NULL) {
+        a = 0;
+        a = atoi(pt);
+        pt = strtok (NULL, "\n");
+    }
+    return a;
+}
+
+int getFilename(char *buf, char* filename){
+    char *pt;
+    pt = strtok (buf,"/");
+
+    while (pt != NULL) {
+        strcpy(filename, pt);
+        pt = strtok (NULL, "/");
+    }
+
+    return 0;
+}
+
+int getPortNumber(char* buf){
+    int numb[5] = {0};
+    int i = 0;
+    char *pt;
+    pt = strtok (buf,",");
+    pt = strtok (NULL,",");
+    while (pt != NULL) {
+        int a = atoi(pt);
+        numb[i] = a;
+        pt = strtok (NULL, ",");
+        i++;
+    }
+    return (numb[3]*256 + numb[4]);
+}
+
 // Function to create a socket
 int createSocket(const char *SERVER_ADDR, int SERVER_PORT) {
     int sockfd;
