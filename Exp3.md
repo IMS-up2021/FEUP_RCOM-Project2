@@ -40,6 +40,7 @@ Then we connected the cables from our tux's to the respective ports so that tux5
 
 The routes in the tuxes are the following:
 
+```note
 routes tux54:
 dest			gateway		interface
 172.16.50.0 		0.0.0.0		eth0
@@ -54,7 +55,7 @@ tux52:
 dest			gateway		interface
 172.16.51.0		0.0.0.0		eth0
 172.16.50.0		172.16.51.253	eth0
-
+```
 It means that tux54 is connected to both bridges and is being used for tux52 to communicate with tux53 via the gateway 172.16.51.253.
 
 ## Question 3
