@@ -84,8 +84,8 @@ The MAC address associated with an ICMP packet is used for layer 2 encapsulation
 
 The use of both IP and MAC addresses in ICMP packets is crucial for efficient communication on IP networks.
 
-	• IP Address: The IP address provides the logical addressing at the network layer, allowing the packet to be routed to the correct destination network or host.
+* IP Address: The IP address provides the logical addressing at the network layer, allowing the packet to be routed to the correct destination network or host.
 
-	• MAC Address: The MAC address provides the physical addressing at the data link layer, enabling the packet to be delivered to the specific NIC on the destination device.
+* MAC Address: The MAC address provides the physical addressing at the data link layer, enabling the packet to be delivered to the specific NIC on the destination device.
 
 Without both IP and MAC addresses, ICMP packets would be unable to efficiently traverse the network and reach their intended recipients.
